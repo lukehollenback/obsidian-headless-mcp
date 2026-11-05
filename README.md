@@ -100,6 +100,7 @@ Set these in `.env`. The full list of server options is in obsidian-remote-mcp's
 | `CLOUDFLARE_TUNNEL_TOKEN` | (required for the tunnel) | Cloudflare Tunnel token |
 | `VAULT_READ_ONLY` | `true` | Set to `false` to allow edits |
 | `VAULT_DISPLAY_NAME` | folder name | Name shown on the approval page |
+| `VAULT_CONTEXT_PATH` | `AGENTS.md`, then `CLAUDE.md` | Vault-relative path of the guidance note agents read at the start of a session. Filenames are case-sensitive on Linux. |
 | `MCP_STATIC_BEARER_TOKEN` | unset | Never-expiring API key for header-based clients |
 | `OB_VERSION` | pinned in image | Obsidian Headless version to download |
 | `MCP_REF` | pinned in image | obsidian-remote-mcp commit or tag to download |
