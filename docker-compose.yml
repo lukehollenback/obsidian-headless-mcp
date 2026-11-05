@@ -1,0 +1,27 @@
+# obsidian-headless-mcp + Cloudflare Tunnel
+#
+# Folder layout next to this file:
+#   .env      <- copy of .env.example, filled in
+#   vault/    <- your notes (create empty)
+#   config/   <- logins, OAuth sign-ins, logs, downloaded tools (create empty)
+
+services:
+  obsidian:
+    image: ghcr.io/lukehollenback/obsidian-headless-mcp:0.1.0
+    container_name: obsidian-headless-mcp
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./vault:/vault
+      - ./config:/config
+    # No ports published: only cloudflared can reach it, over the internal Docker network.
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: obsidian-cloudflared
+    restart: unless-stopped
+    command: ["tunnel", "--no-autoupdate", "run"]
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN}
+    depends_on:
+      - obsidian
