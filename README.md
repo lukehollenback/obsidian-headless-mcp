@@ -44,6 +44,9 @@ In the Cloudflare dashboard, go to **Networking → Tunnels → Create tunnel �
 
 Add a public hostname such as `vault.example.com` with service **HTTP** and URL **`obsidian:3456`**. Set `MCP_BASE_URL` in `.env` to `https://vault.example.com`.
 
+> [!NOTE]
+> Cloudflare might not let you progress to the place where you can actually add a public hostname until you start the container up and let it connect to the tunnel for the first time. If this is the case, just specify your anticipated public hostname in the `.env` file.
+
 ### 3. Start it
 
 **Command line:**
